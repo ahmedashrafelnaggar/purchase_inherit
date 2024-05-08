@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="group_manager_approval" model="res.groups">
+            <field name="name">Manager Approval</field>
+        </record>
+    </data>
+</odoo>
