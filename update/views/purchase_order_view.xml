@@ -1,0 +1,82 @@
+<odoo>
+
+    <record id="purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="price_subtotal" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+
+            <field name="price_subtotal" position="before">
+                <field name="price_subtotal"/>
+            </field>
+
+            <field name="price_total" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <field name="price_subtotal" position="attributes">
+                <attribute name="widget">monetary</attribute>
+                <attribute name="options">"{'currency_field': 'currency_id'}"</attribute>
+                <attribute name="widget">badge</attribute>
+                <attribute name="style">color: red; font-weight: bold;</attribute>
+            </field>
+
+            <field name="price_subtotal" position="after">
+                <field name="tax_incl"/>
+            </field>
+
+            <!--            <field name="taxes_id" position="attributes">-->
+            <!--                    <attribute name="invisible">1</attribute>-->
+            <!--            </field>-->
+
+            <field name="taxes_id" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
+
+<!--            <field name="price_unit" position="attributes">-->
+<!--                <attribute name="widget">monetary</attribute>-->
+
+<!--            </field>-->
+
+            <field name="price_unit" position="after">
+                <field name="discount_type"/>
+            </field>
+
+            <field name="price_unit" position="attributes">
+                <attribute name="widget">monetary</attribute>
+                <attribute name="options">"{'currency_field':'currency_id'}"</attribute>
+            </field>
+
+            <field name="discount" position="replace">
+                <field name="discount"/>
+            </field>
+
+            <field name="partner_ref" position="after">
+                <field name="company_id"/>
+            </field>
+
+            <field name="company_id" position="attributes">
+                <attribute name="groups">base.group_multi_company</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <field name="date_order" position="before">
+                <field name="currency_id"/>
+            </field>
+
+            <field name="currency_id" position="attributes">
+                <attribute name="groups">base.group_multi_company</attribute>
+            </field>
+
+
+            <!--            <field name="partner_ref" position="after">-->
+            <!--                <field name="requisition_id" domain="[('state', 'in', ('in_progress', 'open', 'ongoing')), ('vendor_id', 'in', (partner_id, False)), ('company_id', '=', company_id)]"-->
+            <!--                options="{'no_create': True}"/>-->
+            <!--            </field>-->
+        </field>
+    </record>
+
+</odoo>
